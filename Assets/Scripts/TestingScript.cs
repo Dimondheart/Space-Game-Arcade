@@ -6,6 +6,8 @@ public class TestingScript : MonoBehaviour
   public Weapon[] mountableWeapons;
   public Spaceship[] mountOnShips;
 
+  public Asteroid[] asteroidsToSplit;
+
   void Start()
   {
     foreach (Spaceship ship in mountOnShips)
@@ -20,6 +22,10 @@ public class TestingScript : MonoBehaviour
           }
         }
       }
+    }
+    foreach (Asteroid a in asteroidsToSplit)
+    {
+      a.BreakApart(Random.insideUnitCircle);
     }
   }
 }
