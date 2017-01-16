@@ -6,6 +6,8 @@ public class WeaponMount : MonoBehaviour
 {
   /** Weapon forms that can be mounted to this mount. */
   public Weapon.Shape[] compatableShapes;
+  /** If a weapon mount is on top of the hull, indicate here (false for bottom-mounted.) */
+  public bool isTopMounted;
   /** The currently mounted weapon. */
   public Weapon mountedWeapon { get; private set; }
 
@@ -30,6 +32,7 @@ public class WeaponMount : MonoBehaviour
     if (IsWeaponCompatable(weapon))
     {
       weapon.gameObject.transform.SetParent(transform, false);
+      weapon.isTopMounted = isTopMounted;
       mountedWeapon = weapon;
     }
   }

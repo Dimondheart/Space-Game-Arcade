@@ -6,7 +6,10 @@ public abstract class Turret : MonoBehaviour
   public enum Shape
   {
     NONE = 0,
-    TURRET_ONE
+    TURRET_ONE,
+    TURRET_TWO,
+    TURRET_THREE,
+    TURRET_FOUR
   }
 
   /** The shape of this turret. */

@@ -26,6 +26,18 @@ public class PlayerShipSelection : MonoBehaviour
     {
       SetActiveSpaceship(selectableShips[2]);
     }
+    else if (Input.GetKeyDown(KeyCode.Alpha4))
+    {
+      SetActiveSpaceship(selectableShips[3]);
+    }
+    else if (Input.GetKeyDown(KeyCode.Alpha5))
+    {
+      SetActiveSpaceship(selectableShips[4]);
+    }
+    else if (Input.GetKeyDown(KeyCode.Alpha6))
+    {
+      SetActiveSpaceship(selectableShips[5]);
+    }
   }
 
   public void SetActiveSpaceship(Spaceship spaceship)

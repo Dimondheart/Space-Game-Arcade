@@ -7,12 +7,36 @@ public abstract class Weapon : MonoBehaviour
   {
     NONE=0,
     SMALL_GUN,
-    SIDE_GUN
+    SIDE_GUN,
+    SMALL_GUN_M2,
+    BIG_GUN,
+    LAUNCHER
   }
   /** The amount of time between each weapon fire. */
   public float fireInterval;
   /** The shape of this weapon. */
   public Shape shape;
+
+  public bool isTopMounted
+  {
+    get
+    {
+      return GetComponent<SpriteRenderer>().sortingLayerName == "ShipTopMount";
+    }
+    set
+    {
+      if (value)
+      {
+        GetComponent<SpriteRenderer>().sortingLayerName = "ShipTopMount";
+      }
+      else
+      {
+        GetComponent<SpriteRenderer>().sortingLayerName = "ShipBottomMount";
+      }
+    }
+  }
+
+  private bool internalIsTopMounted;
 
   /** The last time the weapon was fired (or if the weapon fires several rounds at a time,
    * this is the starting time for the entire salvo.
