@@ -7,16 +7,36 @@ using System.Collections;
 public class Destructable : MonoBehaviour
 {
   /** The minimum relative speed required for a collision with another Destructable
-   * to damage this Destructable.
+   * to damage this Destructable. Ignored if the other destructable is marked to ignore this.
    */
   public float minimumDamageSpeed;
+  public bool ignoreMinimumDamageSpeed;
+  /** Game objects to ignore (will not collide or directly effect the ignored game objects.) */
+  public GameObject[] ignored;
 
   void OnCollisionEnter2D(Collision2D collision)
   {
-    if (collision.relativeVelocity.magnitude >= minimumDamageSpeed)
+    Destructable other = collision.gameObject.GetComponent<Destructable>();
+    if (!IsIgnoring(collision.gameObject) && other != null)
     {
-      Debug.Log(collision.relativeVelocity.magnitude);
-      Debug.Log("(" + gameObject + ") damaged");
+      if (other.ignoreMinimumDamageSpeed || Mathf.Abs(collision.relativeVelocity.magnitude) >= minimumDamageSpeed)
+      {
+        Debug.Log("Destructor damages destructable");
+        GetComponent<DesructableHitHandler>().HandleHit(new Hit(collision));
+      }
     }
+  }
+
+  /** Check if this destructor is ignoring the specified game object. */
+  public bool IsIgnoring(GameObject other)
+  {
+    foreach (GameObject ignore in ignored)
+    {
+      if (Object.ReferenceEquals(ignore, other))
+      {
+        return true;
+      }
+    }
+    return false;
   }
 }

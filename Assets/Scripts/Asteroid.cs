@@ -2,15 +2,20 @@
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Asteroid : MonoBehaviour
+public class Asteroid : MonoBehaviour, DesructableHitHandler
 {
   /** Asteroids that can emerge from this one when it splits. Should be sorted from
    * smallest mass to largest mass.
    */
   public GameObject[] smallerAsteroids;
 
+  void DesructableHitHandler.HandleHit(Hit hit)
+  {
+    BreakApart();
+  }
+
   /** Break apart and move the pieces away from the specified direction. */
-  public void BreakApart(Vector2 awayFromDirection)
+  public void BreakApart()
   {
     // Just destroy this if there are no smaller asteroids to break into
     if (smallerAsteroids.Length <= 0)
@@ -30,11 +35,12 @@ public class Asteroid : MonoBehaviour
       }
       Quaternion rotation = Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f));
       GameObject newAsteroid = Instantiate(smallerAsteroids[iToInstantiate], transform.position, rotation) as GameObject;
+      newAsteroid.GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity;
       float angleOfAppliedForce = Random.Range(60.0f, 300.0f);
       float appliedForceMagnitude = Random.Range(10.0f, 100.0f);
-      Vector2 appliedForce = (Quaternion.Euler(0.0f, 0.0f, angleOfAppliedForce) * awayFromDirection) * appliedForceMagnitude;
+      Vector2 appliedForce = (Quaternion.Euler(0.0f, 0.0f, angleOfAppliedForce) * Vector2.right) * appliedForceMagnitude;
       newAsteroid.GetComponent<Rigidbody2D>().AddForce(appliedForce);
-      remainingMass -= newAsteroid.GetComponent<Rigidbody2D>().mass;
+      remainingMass -= (newAsteroid.GetComponent<Rigidbody2D>().mass * 1.5f);
       while (iLargestAllowedAsteroid >= 0 && remainingMass < smallerAsteroids[iLargestAllowedAsteroid].GetComponent<Rigidbody2D>().mass)
       {
         iLargestAllowedAsteroid--;

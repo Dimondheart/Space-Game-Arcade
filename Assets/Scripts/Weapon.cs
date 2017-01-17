@@ -36,6 +36,14 @@ public abstract class Weapon : MonoBehaviour
     }
   }
 
+  protected GameObject spaceship
+  {
+    get
+    {
+      return transform.parent.parent.gameObject;
+    }
+  }
+
   private bool internalIsTopMounted;
 
   /** The last time the weapon was fired (or if the weapon fires several rounds at a time,

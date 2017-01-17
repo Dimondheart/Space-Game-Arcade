@@ -15,7 +15,8 @@ public class Gun1 : Weapon
     lastFireTime = Time.time;
     GameObject newBullet = Instantiate(bullet) as GameObject;
     // Don't allow the bullet to accidentally hit the thing firing
-    newBullet.GetComponent<Destructor>().ignored = new GameObject[] { gameObject.transform.parent.parent.gameObject };
+    newBullet.GetComponent<Destructable>().ignored = new GameObject[] { spaceship };
+    newBullet.GetComponent<Rigidbody2D>().velocity = spaceship.GetComponent<Rigidbody2D>().velocity;
     GameObject animation = Instantiate(fireAnimation) as GameObject;
     Transform spawn = GetComponentsInChildren<Transform>()[1];
     // Bind the firing animation to the spawn point

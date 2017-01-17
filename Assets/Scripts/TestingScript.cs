@@ -23,9 +23,9 @@ public class TestingScript : MonoBehaviour
         }
       }
     }
-    foreach (Asteroid a in asteroidsToSplit)
-    {
-      a.BreakApart(Random.insideUnitCircle);
-    }
+    //foreach (Asteroid a in asteroidsToSplit)
+    //{
+    //  a.BreakApart();
+    //}
   }
 }
