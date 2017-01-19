@@ -20,14 +20,15 @@ public class UserInputWeaponFire : MonoBehaviour
 
   void Update()
   {
+    if (spaceship == null)
+    {
+      return;
+    }
     if (Input.GetMouseButton(0))
     {
       foreach (WeaponMount mount in spaceship.weaponMounts)
       {
-        if (mount.mountedWeapon != null)
-        {
-          mount.mountedWeapon.Fire();
-        }
+        mount.FireWeapon();
       }
     }
   }

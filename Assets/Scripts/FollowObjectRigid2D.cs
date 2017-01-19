@@ -19,10 +19,9 @@ public class FollowObjectRigid2D : MonoBehaviour
     {
       toFollow = gameController.GetComponent<PlayerShipSelection>().activePlayerShip.transform;
     }
-    if (toFollow == null)
+    if (toFollow != null)
     {
-      return;
+      transform.position = new Vector3(toFollow.position.x, toFollow.position.y, transform.position.z);
     }
-    transform.position = new Vector3(toFollow.position.x, toFollow.position.y, transform.position.z);
   }
 }

@@ -42,4 +42,12 @@ public class WeaponMount : MonoBehaviour
   {
     mountedWeapon = null;
   }
+
+  public void FireWeapon()
+  {
+    if (mountedWeapon != null)
+    {
+      mountedWeapon.Fire();
+    }
+  }
 }

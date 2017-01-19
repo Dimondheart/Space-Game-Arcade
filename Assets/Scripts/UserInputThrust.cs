@@ -20,6 +20,10 @@ public class UserInputThrust : MonoBehaviour
 
   void Update()
   {
+    if (spaceship == null)
+    {
+      return;
+    }
     float horizontal = Input.GetAxisRaw("Horizontal");
     float vertical = Input.GetAxisRaw("Vertical");
     float rotational = GetRotationThrust();
