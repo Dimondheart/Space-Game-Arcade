@@ -2,14 +2,14 @@
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Asteroid : MonoBehaviour, DesructableHitHandler
+public class Asteroid : MonoBehaviour, DestructableHitHandler
 {
   /** Asteroids that can emerge from this one when it splits. Should be sorted from
    * smallest mass to largest mass.
    */
   public GameObject[] smallerAsteroids;
 
-  void DesructableHitHandler.HandleHit(Hit hit)
+  void DestructableHitHandler.HandleHit(Hit hit)
   {
     BreakApart();
   }

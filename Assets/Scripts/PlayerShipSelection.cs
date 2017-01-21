@@ -42,8 +42,15 @@ public class PlayerShipSelection : MonoBehaviour
 
   public void SetActiveSpaceship(Spaceship spaceship)
   {
+    if (spaceship == null)
+    {
+      return;
+    }
     spaceship.GetComponent<SpaceshipAI>().enabled = false;
-    activePlayerShip.GetComponent<SpaceshipAI>().enabled = true;
+    if (activePlayerShip != null)
+    {
+      activePlayerShip.GetComponent<SpaceshipAI>().enabled = true;
+    }
     activePlayerShip = spaceship;
   }
 }

@@ -2,7 +2,7 @@
 using System.Collections;
 
 /** Handles carrying out the effects of a hit on an object. */
-public interface DesructableHitHandler
+public interface DestructableHitHandler
 {
   /** Handle causing the effects of the specified hit on this object. */
   void HandleHit(Hit hit);

@@ -7,7 +7,8 @@ public class UserInputThrust : MonoBehaviour
   {
     get
     {
-      return gameController.GetComponent<PlayerShipSelection>().activePlayerShip.gameObject;
+      Spaceship ss = gameController.GetComponent<PlayerShipSelection>().activePlayerShip;
+      return (ss == null ? null : ss.gameObject);
     }
   }
 

@@ -2,9 +2,9 @@
 using System.Collections;
 using System;
 
-public class Projectile : MonoBehaviour, DesructableHitHandler
+public class Projectile : MonoBehaviour, DestructableHitHandler
 {
-  void DesructableHitHandler.HandleHit(Hit hit)
+  void DestructableHitHandler.HandleHit(Hit hit)
   {
     GameObject.Destroy(gameObject);
   }

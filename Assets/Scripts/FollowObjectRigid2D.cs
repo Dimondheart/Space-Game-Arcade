@@ -17,7 +17,15 @@ public class FollowObjectRigid2D : MonoBehaviour
     // If this is attached to the main camera, update the current thing to follow
     if (CompareTag("MainCamera"))
     {
-      toFollow = gameController.GetComponent<PlayerShipSelection>().activePlayerShip.transform;
+      Spaceship go = gameController.GetComponent<PlayerShipSelection>().activePlayerShip;
+      if (go == null)
+      {
+        toFollow = null;
+      }
+      else
+      {
+        toFollow = go.transform;
+      }
     }
     if (toFollow != null)
     {

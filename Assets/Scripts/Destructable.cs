@@ -13,16 +13,21 @@ public class Destructable : MonoBehaviour
   public bool ignoreMinimumDamageSpeed;
   /** Game objects to ignore (will not collide or directly effect the ignored game objects.) */
   public GameObject[] ignored;
+  public Hit.Type hitType;
 
   void OnCollisionEnter2D(Collision2D collision)
   {
     Destructable other = collision.gameObject.GetComponent<Destructable>();
+    if (IsIgnoring(collision.gameObject))
+    {
+      Debug.Log(ignored[0]);
+    }
     if (!IsIgnoring(collision.gameObject) && other != null)
     {
+      Debug.Log(gameObject);
       if (other.ignoreMinimumDamageSpeed || Mathf.Abs(collision.relativeVelocity.magnitude) >= minimumDamageSpeed)
       {
-        Debug.Log("Destructor damages destructable");
-        GetComponent<DesructableHitHandler>().HandleHit(new Hit(collision));
+        GetComponent<DestructableHitHandler>().HandleHit(new Hit(collision));
       }
     }
   }
